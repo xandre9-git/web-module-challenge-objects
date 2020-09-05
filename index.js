@@ -8,9 +8,26 @@ const breakfastBurrito = {name: "Breakfast Burrito", price: 16, category:"Breakf
 
 function createMenuItem(name, cost, category){
     /* Code here */
+    const menuItem = new Object(); // use new Object() to create object
+    menuItem.name = name; // use var name with dot notation and key name , assign it value
+    menuItem.price = cost;
+    menuItem.category = category;
+    return menuItem; // return var name to complete function
 }
 
+const pizza = createMenuItem("Pizza", 6, "Lunch")
+
+console.log(pizza)
+
 /* Task 1b: use your function to create 3 more menu items. You may add any items to the menu that you'd like */
+
+const fries = createMenuItem("Fries", 3, "Lunch")
+const orangejuice = createMenuItem("Orange Juice", 2.5, "Breakfast")
+const ribs = createMenuItem("Ribs", 10, "Dinner")
+
+console.log(fries)
+console.log(orangejuice)
+console.log(ribs)
 
 
 
@@ -24,6 +41,17 @@ and should return a number.
 
 For example, burger.discount("teacher") would return 13.5 and burger.discount("public") would return 16.2*/
 
+burger.discount = function(str){
+  if (str === "teacher" || str === "student") {
+    this.price = this.price - (this.price * .25); 
+    return this.price;
+  } else {
+    this.price = this.price - (this.price * .1);
+    return this.price;
+  }
+}
+
+console.log(burger.discount("public"))
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -40,11 +68,25 @@ const reviews = [{name: "Daniela", rating: 5, feedback:"Beautiful atmosphere and
 
 /* Task 3: Console.log just Julius' feedback */
 
+//To access a specific value in an array full of multiple objects, find the index number and use dot notation to call key to get its value
+console.log(Object.values(reviews)[5].feedback)
+
 
 /* Task 4: Add a new rating with your (fictitious) opinions of the restaurant in the same format as the reviews above. */
 
+reviews[8] = {name: "Johnathan", rating: 5, feedback: "The food here is so tasty."}
 
-/* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays"
+console.log(reviews)
+console.log(reviews.length)
+
+
+/* Task 5: Add the following feedback to Reyna's rating - "this place is chill with really cool people, great for getting work done on weekdays" */
+
+//call the 7th element in the array and with dot notation changed the feedback key for that location to desired string.
+
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays";
+
+console.log(reviews)
 
 /*  Task 6: Write a function to return a review based on the index of the review in the array.
 
@@ -58,9 +100,14 @@ and should return a string in the format `{name} gave the restaurant a {rating},
  * For example, if getReviewByIndex is invoked with reviews and the number 0
  * it will return `Daniela gave the restaurant a 5 star review and their feedback was: Beautiful atmosphere and wonderful vegan options!`
 */
+
+// function takes array called reviews, and its index number. prints index review using varname[index].key
 function getReviewByIndex(reviews, index) {
-    /* code here */
+    indexreview = `${reviews[index].name} gave the restaurant a ${reviews[index].rating}, and their feedback was: "${reviews[index].feedback}"`;
+    return indexreview;
   }
+
+ console.log(getReviewByIndex(reviews, 2))
   
 
 /* Task 7: Write a function to get information about the most recent review called `getLastReview`
@@ -72,10 +119,15 @@ and should return a string in the format `name} gave the restaurant a {rating}, 
 
 For example, if getLastReview is invoked passing the reviews array it will return `Reyna gave the restaurant a 3.5 star review and their feedback was: "this place is chill with really cool people, great for getting work done on weekdays"`.
 */
-function getLastReview(/* code here */) {
+
+// function gets most recent review using array[array.length-1].key invocation
+function getLastReview(array) {
+    getlast = `${array[array.length-1].name} gave the restaurant a ${array[array.length-1].rating}, and their feedback was: "${array[array.length-1].feedback}"`;
+    return getlast
     /* code here */
   } 
 
+console.log(getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
